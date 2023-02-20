@@ -8,8 +8,13 @@ const notes = db.collection("notes");
 
 
 const InsertItem = async (id, data) => {
-    const result = await notes.insertOne({_id: id, content: `${data}`});
-    console.log(`A document was inserted with the _id: ${result.insertedId}`);
+    try {
+        const result = await notes.insertOne({_id: id, content: `${data}`});
+        console.log(`A document was inserted with the _id: ${result.insertedId}`);
+        return {status: true, id}
+    } catch (err) {
+        return {status: false, id}
+    }
 }
 
 const RemoveItem = async (id) => {
