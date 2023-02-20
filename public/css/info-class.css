@@ -1,0 +1,29 @@
+@import url('./theme.css');
+
+.info-class {
+    width: 93vw;
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+.nof-box {
+    display: grid;
+    place-items: center;
+    gap: .5rem;
+}
+
+.fa-circle-info {
+    font-size: 2rem;
+    color: var(--drk-white);
+}
+
+.nfo-txt {
+    color: var(--drk-white);
+}
+
+@media only screen and (min-width: 700px) {
+    .info-class {
+        width: 538.5px;
+    }
+}

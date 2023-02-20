@@ -1,0 +1,19 @@
+@import url('./fonts.css');
+@import url('./wrapper.css');
+@import url('./items.css');
+@import url('./info-class.css');
+@import url('./add-item.css');
+@import url('./note.css');
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    padding: 0;
+    margin: 0;
+    font-family: 'Mongo-Note';
+    background-color: var(--edg-black);
+}

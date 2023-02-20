@@ -1,0 +1,50 @@
+@import url('./theme.css');
+
+.add-items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0 0 .5rem .5rem;
+    background-color: var(--bg-fblack);
+    padding: .4rem .7rem .4rem .4rem;
+    box-shadow: 0 0 10px rgb(0, 0, 0, .34);
+}
+
+.user-note {
+    width: 100%;
+    background-color: var(--bg-fblack);
+    color: var(--fr-white);
+    border: none;
+    margin-left: 1rem;
+    padding: .5rem;
+}
+
+.user-note::placeholder {
+    color: var(--drk-white);
+}
+
+.user-note:focus {
+   outline: none;
+}
+
+.user-note, .addItem {
+    font-family: 'Mongo-Note';
+    font-size: 1.1rem;
+}
+
+.addItem {
+    color: var(--pre-green);
+    border: none;
+    background-color: transparent;
+    transition: all .2s;
+}
+
+.addItem:active {
+    padding-top: .3rem;
+}
+
+@media only screen and (min-width: 700px) {
+    .addItem {
+        cursor: pointer;
+    }
+}

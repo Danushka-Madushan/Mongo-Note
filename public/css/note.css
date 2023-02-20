@@ -1,0 +1,62 @@
+@import url('./theme.css');
+
+.note {
+    display: flex;
+    background-color: var(--bg-fblack);
+    color: var(--fr-white);
+    align-items: center;
+    padding: .4rem;
+    border: none;
+    border-bottom: 1px solid var(--dulp-white);
+}
+
+.item-content {
+    display: grid;
+}
+
+.add-date {
+    margin: 0 .4rem;
+    padding: 0 .3rem;
+    font-size: .9rem;
+    color: var(--drk-white);
+}
+
+.content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 70vw;
+    font-size: 16px;
+    margin: 0 .4rem;
+    padding: .3rem;
+}
+
+.remove, .copy {
+    border: none;
+    background-color: transparent;
+    font-size: 1.2rem;
+    transition: all .2s ease;
+}
+
+.copy {
+    color: var(--dk-green);
+}
+
+.copy:active {
+    color: var(--pre-green);
+}
+
+.remove {
+    color: var(--dul-white);
+}
+
+
+@media only screen and (min-width: 700px) {
+    .content {
+        width: 450px;
+    }
+    
+    .remove, .copy {
+        cursor: pointer;
+    }
+}
