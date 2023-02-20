@@ -33,20 +33,17 @@
 .controls {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    gap: .4rem;
-    
+    justify-content: center;
+
 }
 
-.controls > button {
+.refresh {
     border: none;
     color: var(--fr-white);
     background-color: transparent;
     font-size: 1.1rem;
-}
-
-.refresh {
-    transition: .2s;
+    padding: 6px;
+    line-height: 30px;
 }
 
 .refresh:hover {
@@ -55,4 +52,13 @@
 
 .refresh:active {
     color: var(--fb-blue);
+}
+
+@keyframes setRotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
 }

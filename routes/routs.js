@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { InsertItem, RemoveItem, RequestNotes } = require('../scripts/mongo')
+const { InsertItem, RemoveItem, RequestNotes } = require('../mongo/db')
 
 router.get('/insert', (req, res) => {
     InsertItem('7d8328d8-680b-4782-8850-551a81b876f8', 'Alex is My Friend').then((stat) => {

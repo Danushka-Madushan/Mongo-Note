@@ -53,3 +53,24 @@ $('.items').on('click', '.copy', (e) => {
     .innerText
     navigator.clipboard.writeText(content);
 });
+
+
+$('.refresh').click( (e) => { 
+    let target = e.currentTarget
+    $(target).css('animation', 'setRotation 2s infinite linear');
+    setTimeout(() => {
+        $(target).fadeOut(()=>{
+            $(target).css('animation', 'none');
+            target.className = 'fa-solid fa-circle-check refresh'
+            $(target).css('color', '#009B77');
+            $(target).fadeIn();
+            setTimeout(() => {
+                $(target).fadeOut(() => {
+                    target.className = 'fa-solid fa-rotate refresh'
+                    $(target).css('color', '#fff');
+                    $(target).fadeIn();
+                });
+            }, 1000)
+        });
+    }, 3000)
+});
