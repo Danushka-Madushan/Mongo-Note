@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mongo Note</title>
+    <link rel="stylesheet" href="./css/font-awesome.css"/>
+    <link rel="stylesheet" href="./css/styles.css"/>
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="menu-bar">
+            <div class="info-sec">
+                <img class="ico-head" src="./assets/favicon.ico"></img>
+                <span class="headname">Important</span>
+            </div>
+            <div class="controls">
+                <button class="refresh" type="button"><i class="fa-solid fa-arrows-rotate"></i></button>
+            </div>
+        </div>
+        <div class="items">
+            <div class="info-class">
+                <div class="nof-box">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span class="nfo-txt">Your List Seems to Empty.</span>
+                </div> 
+            </div>
+        </div>
+        <div class="add-items">
+            <input id="u-note" type="text" placeholder="Something Amazing..." class="user-note">
+            <button class="addItem" type="button"><i class="fa-solid fa-file-circle-plus"></i></button>
+        </div>
+    </div>
+    <script src="./js/jquery.min.js"></script>
+    <script type="module" src="./js/script.js"></script> <!-- add animation for Item Scrolling  -->
+</body>
+</html>
