@@ -4,11 +4,10 @@ const { InsertItem, RemoveItem, RequestNotes } = require('../scripts/mongo')
 
 router.get('/insert', (req, res) => {
     InsertItem('7d8328d8-680b-4782-8850-551a81b876f8', 'Alex is My Friend').then((stat) => {
-        res.setHeader('Content-Type', 'application/json')
         if (stat.status) {
-            res.status(200).end(JSON.stringify({status:200, _id:stat.id}))
+            res.status(200).json({status:200, _id:stat.id})
         } else {
-            res.status(200).end(JSON.stringify({status:400, _id:stat.id, error:'uuid is already in use'}))
+            res.status(200).json({status:400, _id:stat.id, error:'uuid is already in use'})
         }
     })
 })
