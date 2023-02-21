@@ -61,7 +61,6 @@ $('.items').on('click', '.copy', (e) => {
 
 });
 
-
 $('.refresh').click( (e) => { 
     let target = e.currentTarget
     $(target).css('animation', 'setRotation 2s infinite linear');
