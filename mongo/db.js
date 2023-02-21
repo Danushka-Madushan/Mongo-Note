@@ -6,11 +6,10 @@ const client = new MongoClient(authURI);
 const db = client.db("mongo-note");
 const notes = db.collection("notes");
 
-
 const InsertItem = async (id, data) => {
     try {
         const result = await notes.insertOne({_id: id, content: `${data}`});
-        return {status: true, id, message:`A document was inserted with the _id: ${result.insertedId}`}
+        return {status: true, id:result.insertedId, message:'document Inserted'}
     } catch (err) {
         return {status: false, id, message:'uuid not Available'}
     }
