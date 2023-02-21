@@ -10,10 +10,9 @@ const notes = db.collection("notes");
 const InsertItem = async (id, data) => {
     try {
         const result = await notes.insertOne({_id: id, content: `${data}`});
-        console.log(`A document was inserted with the _id: ${result.insertedId}`);
-        return {status: true, id}
+        return {status: true, id, message:`A document was inserted with the _id: ${result.insertedId}`}
     } catch (err) {
-        return {status: false, id}
+        return {status: false, id, message:'uuid not Available'}
     }
 }
 
@@ -21,9 +20,9 @@ const RemoveItem = async (id) => {
     const result = await notes.deleteOne({_id: id});
 
     if (result.deletedCount === 1) {
-        console.log("Successfully deleted one document.");
+        return {status:true, id, message:"Successfully deleted one document."}
     } else {
-        console.log("No documents matched the query. Deleted 0 documents.");
+        return {status:false, id, message:"No documents matched the query. Deleted 0 documents."}
     }
 }
 
@@ -32,4 +31,4 @@ const RequestNotes = async () => {
     return await cursor.toArray();
 }
 
-module.exports = {InsertItem, RemoveItem, RequestNotes}
+module.exports = { InsertItem, RemoveItem, RequestNotes }
