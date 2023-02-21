@@ -2,15 +2,18 @@ const express = require('express')
 const router = express.Router()
 const { InsertItem, RemoveItem, RequestNotes } = require('../mongo/db')
 
-router.get('/insert', (req, res) => {
-    InsertItem('7d8328d8-680b-4782-8850-551a81b876f8', 'Alex is My Friend').then((resp) => {
+router.use(express.json())
+
+router.post('/insert', (req, res) => {
+    console.log(req.body)
+    InsertItem(req.body.id, req.body.content).then((resp) => {
         res.status((resp.status ? 200 : 400)).json({_id:resp.id, message:resp.message})
     })
 })
 
-router.get('/remove', (req, res) => {
-    RemoveItem('7d8328d8-680b-4782-8850-551a81b876f8').then(resp => {
-        res.status((resp.status ? 200 : 400)).json({id: resp.id, dbQuery:resp})
+router.post('/remove', (req, res) => {
+    RemoveItem(req.body.id).then((resp) => {
+        res.status((resp.status ? 200 : 400)).json({id: resp.id, dbQuery:resp.message})
     })
 })
 

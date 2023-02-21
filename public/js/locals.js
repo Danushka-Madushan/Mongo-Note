@@ -7,30 +7,61 @@ const uuidv4 = () => {
 }
 
 const addItemtoDB = (content, id) => {
-    console.log({content: `${content}`, id:id})
+    $.ajax({
+        type: "POST",
+        url: "/db/insert",
+        data: JSON.stringify({content: `${content}`, id:id }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: (data) => {
+            console.log(data);
+        },
+        error: (errMsg) => {
+            console.log(errMsg);
+        }
+    });
 }
 
 export const removeItemfromDB = (id) => {
-    console.log(id)
+    $.ajax({
+        type: "POST",
+        url: "/db/remove",
+        data: JSON.stringify({id:id}),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: (data) => {
+            console.log(data);
+        },
+        error: (errMsg) => {
+            console.log(errMsg);
+        }
+    });
 }
 
 export const getInput = () => {
     return (userInput.value ? userInput.value : false)
 }
 
-export const createNote = (data) => {
+export const createNote = (data, id, refresh) => {
     let date = new Date().toISOString().slice(0, 10)
-    let nt = document.createElement('div')
-    nt.className = 'note'
-    nt.id = uuidv4()
-    nt.innerHTML = `
-    <button class="remove" type="button"><i class="fa-solid fa-circle-notch"></i></button>
-    <div class="item-content">
-        <span class="content">${data}</span>
-        <span class="add-date">Today</span>
-    </div>
-    <button class="copy" type="button"><i class="fa-solid fa-clipboard"></i></button>
-    `
-    addItemtoDB(data, nt.id)
-    return nt
+
+    if (!document.getElementById(id)) {
+        let nt = document.createElement('div')
+        nt.className = 'note'
+
+        id ? nt.id = id : nt.id = uuidv4()
+        refresh ? false : addItemtoDB(data, nt.id)
+
+        nt.innerHTML = `
+        <button class="remove" type="button"><i class="fa-solid fa-circle-notch"></i></button>
+            <div class="item-content">
+                <span class="content">${data}</span>
+                <span class="add-date">Today</span>
+            </div>
+        <button class="copy" type="button"><i class="fa-solid fa-clipboard"></i></button>
+        `
+        return nt
+    } else {
+        return false
+    }
 }

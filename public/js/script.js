@@ -3,15 +3,21 @@ import { createNote, getInput, removeItemfromDB } from "./locals.js"
 const userNotes = document.querySelector('.items')
 const ghostCalss = document.querySelector('.info-class')
 
-$('.addItem').click(() => {
-    let value = getInput()
-    if (value) {
-        $(ghostCalss).fadeOut(() => {
-            let newItem = createNote(value, '', '')
+const NewNote = (content, id, refresh) => {
+    $(ghostCalss).fadeOut(() => {
+        let newItem = createNote(content, id, refresh)
+        if (newItem) {
             $(newItem).hide();
             userNotes.append(newItem)
             $(newItem).fadeIn();
-        });        
+        }
+    }); 
+}
+
+$('.addItem').click(() => {
+    let value = getInput()
+    if (value) {
+        NewNote(value)  
     }
 });
 
@@ -51,14 +57,16 @@ $('.items').on('click', '.copy', (e) => {
     .children[1]
     .children[0]
     .innerText
-    navigator.clipboard.writeText(content);
+    navigator.clipboard.writeText(content)
+
 });
 
 
 $('.refresh').click( (e) => { 
     let target = e.currentTarget
     $(target).css('animation', 'setRotation 2s infinite linear');
-    setTimeout(() => {
+
+    const clearAnim = () => {
         $(target).fadeOut(()=>{
             $(target).css('animation', 'none');
             target.className = 'fa-solid fa-circle-check refresh'
@@ -72,5 +80,37 @@ $('.refresh').click( (e) => {
                 });
             }, 1000)
         });
-    }, 3000)
+    }
+
+    $.ajax({
+        type: "GET",
+        url: "/db/request",
+        success: (data) => {
+            if (data.length != 0) {
+                let idList = []
+                for (let x of data) {
+                    idList.push(x['_id'])
+                }
+                for (let each of document.getElementsByClassName('note')) {
+                    if (!idList.includes(each.id)) {
+                        $(each).slideUp(() => {
+                            each.remove()
+                        });
+                    }
+                }
+                for (let each of data) {
+                    NewNote(each['content'], each['_id'], true)
+                }
+            } else {
+                for (let each of document.getElementsByClassName('note')) {
+                    each.remove()
+                }
+                $(ghostCalss).fadeIn();
+            }
+            clearAnim()
+        },
+        error: (errMsg) => {
+            console.log(errMsg);
+        }
+    });
 });
